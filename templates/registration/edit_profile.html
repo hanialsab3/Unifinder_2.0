@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% block content %}
+{% if user.is_authenticated %}
+{# {% if user.id == student.user.id %} #}
+
+<div class="container">
+  <h1>Edit Settings</h1>
+  <br>
+  {% if user.university %}
+    <p>University</p>
+    <p>{{user.university}}</p>
+  {% endif %}
+  {% if user.student %}
+    <p>Strudnet</p>
+    <p>{{user.student}}</p>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-primary" value="Update Profile">
+  </form>
+</div>
+{{user.id}}
+{{student.user.id}}
+{{university.user.id}}
+{# {% endif %} #}
+{% else %}
+  Please Log in first.
+{% endif %}
+
+
+
+{% endblock %} #}

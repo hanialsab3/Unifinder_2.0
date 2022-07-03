@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == student.user.id %}
+<h1>Student Profile</h1>
+
+{{ page_student }}
+<h1 >{{ page_student.id }}</h1>
+<h3 style="color:blue">User:</h3> <br>
+<p>{{ page_student.user }}</p>
+<h3 style="color:blue">Application debug :</h3> <br>
+<p>{{ page_student.application_debug }}</p>
+
+
+{% else %}
+You are not the correct user to edit this page
+{% endif %}
+{% else %}
+  Please Log in first.
+{% endif %}
+{% endblock %}
