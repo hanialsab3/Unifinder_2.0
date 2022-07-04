@@ -1,7 +1,14 @@
 from django.views.generic import TemplateView
+from accounts.models import Student, University
 
 class Index(TemplateView):
     template_name = "index/index-1.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['students'] = Student.objects.all()[:5]
+        context['universities'] = University.objects.all()[:5]
+        return context
+
 class Index2(TemplateView):
     template_name = "index/index-2.html"
 class Index3(TemplateView):

@@ -32,7 +32,7 @@ class University(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("university-detail", args=[str(self.id)])
+        return reverse("show_university_profile_page", args=[str(self.id)])
 
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
