@@ -39,6 +39,22 @@ def login_user(request):
     else:
         return render(request, 'registration/login.html')
 
+def register_user(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ("Registration Successful!"))
+            return redirect('index')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {
+        'form':form,
+    })
 
 class CreateStudentProfilePageView(CreateView):
     model = Student

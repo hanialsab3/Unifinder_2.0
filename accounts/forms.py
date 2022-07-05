@@ -29,18 +29,26 @@ class ProfilePageUniverityForm(ModelForm):
 
 
 class SignUpForm(UserCreationForm):                           #add init function in case the boostrap is messed up
-    email = forms.EmailField()
-    first_name = forms.CharField(max_length=100)
-    last_name = forms.CharField(max_length=100)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+    first_name = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control'}))
+    last_name = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control'}))
 
     class Meta:
         model = User
         fields = ('username','first_name','last_name','email','password1','password2')
 
-        # def __init__(self,*args,**kwargs):
-        #     super().__init__(*args,**kwargs)
-        #     self.fields['username'].label = "Display Name"
-        #     self.fields['email'].label = "Email Address"
+    def __init__(self,*args,**kwargs):
+        super(SignUpForm, self).__init__(*args,**kwargs)
+        self.fields['username'].widget.attrs['class'] = "form-control"
+        self.fields['password1'].widget.attrs['class'] = "form-control"
+        self.fields['password2'].widget.attrs['class'] = "form-control"
+        self.fields['username'].widget.attrs['placeholder'] = "Enter your username"
+        self.fields['password1'].widget.attrs['placeholder'] = "Enter your password"
+        self.fields['password2'].widget.attrs['placeholder'] = "Enter your password again"
+        self.fields['first_name'].widget.attrs['placeholder'] = "Enter your first name"
+        self.fields['last_name'].widget.attrs['placeholder'] = "Enter your last name"
+        self.fields['email'].widget.attrs['placeholder'] = "Enter your email"
+
 
 class EditProfileForm(UserChangeForm):                           #add init function in case the boostrap is messed up
     email = forms.EmailField()
