@@ -22,6 +22,7 @@ from . import views
 # urls.py
 
 urlpatterns = [
+    path('admin/clearcache/', include('clearcache.urls')),
     path('admin/', admin.site.urls),
     # Index Page
     path('', views.Index.as_view(),name='index'),
@@ -49,6 +50,11 @@ urlpatterns = [
     path('manage-jobs-post',views.ManageJobs.as_view(),name='manage-jobs-post'),
     path('bookmark-jobs',views.BookmarkJobs.as_view(),name='bookmark-jobs'),
     path('profile',views.Profile.as_view(),name='profile'),
+
+    path('programs/<int:pk>/', views.ProgramDetailView.as_view(), name='program-detail'),
+    # path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
+    # path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
+    path('search_universities', views.search_universities, name='search-universities'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

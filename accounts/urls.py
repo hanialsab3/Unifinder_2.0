@@ -1,6 +1,7 @@
 from django.conf.urls import url,include
 from django.urls import path
 from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib.auth import views as auth_views
 from .views import login_user, SignUp, UserEditView, ShowProfilePageView, EditProfilePageView, ShowUniversityProfilePageView, EditUniversityProfilePageView, CreateUniversityProfilePageView, CreateStudentProfilePageView
 from . import views
@@ -23,4 +24,7 @@ urlpatterns = [
     path('create_university_profile_page/', CreateUniversityProfilePageView.as_view(),name='create_university_profile_page'),
     path('create_student_profile_page/', CreateStudentProfilePageView.as_view(),name='create_student_profile_page'),
 
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

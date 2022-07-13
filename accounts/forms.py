@@ -129,6 +129,7 @@ class UniversityProfileForm(ModelForm):
             self.user = user
             super(UniversityProfileForm, self).__init__(*args, **kwargs)
 
+
 class ProgramForm(ModelForm):
     class Meta:
         model = Program

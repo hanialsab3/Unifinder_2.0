@@ -24,13 +24,14 @@
                                 <!--end col-->
                             </div>
                             <!--end row-->
-                            <form action="#">
+                            <form method=POST action="{% url 'search-universities' %}">
+                                {% csrf_token %}
                                 <div class="registration-form">
                                     <div class="row g-0">
                                         <div class="col-lg-3">
                                             <div class="filter-search-form filter-border mt-3 mt-lg-0">
                                                 <i class="uil uil-briefcase-alt"></i>
-                                                <input type="search" id="job-title" class="form-control filter-input-box" placeholder="University, program name ...">
+                                                <input type="search" id="job-title" class="form-control filter-input-box" placeholder="University, program name ..." name="searched">
                                             </div>
                                         </div><!--end col-->
                                         <div class="col-lg-3">
@@ -299,7 +300,7 @@
                                         </div><!--end col-->
                                         <div class="col-lg-3">
                                             <div class="mt-3 mt-lg-0 h-100">
-                                                <button class="btn btn-primary submit-btn w-100 h-100" type="submit"><i class="uil uil-search me-1"></i> Find Job</button>
+                                                <button class="btn btn-primary submit-btn w-100 h-100" type="submit"><i class="uil uil-search me-1"></i> Find University</button>
                                             </div>
                                         </div><!--end col-->
                                     </div><!--end row-->

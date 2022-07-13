@@ -7,13 +7,13 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import BasePermission, IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly, SAFE_METHODS
 from .serializers import UniversitySerializer, StudentSerializer, UserSerializer, ApplicationSerializer
-from .models import University, Student, Application
+from .models import University, Student, Application, Program
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, EditProfileForm, ProfilePageUniverityForm, ProfilePageStudentForm
+from .forms import SignUpForm, EditProfileForm, ProfilePageUniverityForm, ProfilePageStudentForm, ProgramForm
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from . import forms
@@ -109,6 +109,7 @@ class ShowUniversityProfilePageView(DetailView):
         context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
         page_student = get_object_or_404(University, id=self.kwargs['pk'])
         context["page_student"] = page_student
+        context['programs'] = Program.objects.all()
         return context
 
 class SignUp(CreateView):
