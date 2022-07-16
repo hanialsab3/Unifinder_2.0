@@ -18,6 +18,7 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from .views import ShowUniversityProfilePageView, ProgramDetailView
 
 # urls.py
 
@@ -51,10 +52,14 @@ urlpatterns = [
     path('bookmark-jobs',views.BookmarkJobs.as_view(),name='bookmark-jobs'),
     path('profile',views.Profile.as_view(),name='profile'),
 
-    path('programs/<int:pk>/', views.ProgramDetailView.as_view(), name='program-detail'),
+    path('<int:pk>/profile_university', ShowUniversityProfilePageView.as_view(),name='show_university_profile_page'),
+    path('<int:pk>/flaps', ProgramDetailView.as_view(), name='flapmap'),
     # path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
     # path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
+    path('applications/add/', views.AddApplicationView.as_view(), name='add_application'),
     path('search_universities', views.search_universities, name='search-universities'),
-]
+    path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application-detail'),
+
+]+ static(settings.STATIC_URL,)
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

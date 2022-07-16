@@ -68,4 +68,4 @@ class Program(models.Model):
         return "Program " + str(self.id)
 
     def get_absolute_url(self):
-        return reverse("program-detail", args=[str(self.id)])
+        return reverse("flapmap", args=[str(self.id)])

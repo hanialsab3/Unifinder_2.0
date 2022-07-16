@@ -1,4 +1,10 @@
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
+from accounts.models import University, Student, Application, Program
+# from .forms import ApplicationForm
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Jobs
 class JobList(TemplateView):
@@ -9,10 +15,23 @@ class JobGrid(TemplateView):
     template_name = "pages/jobs/job-grid.html"
 class JobGrid2(TemplateView):
     template_name = "pages/jobs/job-grid-2.html"
-class JobDetails(TemplateView):
-    template_name = "pages/jobs/job-details.html"
+class JobDetails(CreateView):
+    template_name = 'pages/jobs/job-details.html'
+
 class JobCategories(TemplateView):
     template_name = "pages/jobs/job-categories.html"
+
+# class ShowUniversityProfilePageView(DetailView):
+#     model = University
+#     template_name = 'pages/candidates-company/company-details.html'
+#
+#     def get_context_data(self, **kwargs):
+#         universities = University.objects.all()
+#         context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
+#         page_student = get_object_or_404(University, id=self.kwargs['pk'])
+#         context["page_student"] = page_student
+#         context['programs'] = Program.objects.all()
+#         return context
 
 # Candidates-Company
 class CandidateList(TemplateView):

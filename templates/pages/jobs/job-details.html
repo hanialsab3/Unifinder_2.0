@@ -432,7 +432,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3">
-                                                    <a href="#applyNow" data-bs-toggle="modal" class="btn btn-primary btn-hover w-100 mt-2">Apply Now <i class="uil uil-arrow-right"></i></a>
+                                                    <a href="{% url 'add_application' %}" class="btn btn-primary btn-hover w-100 mt-2">Apply Now <i class="uil uil-arrow-right"></i></a>
                                                     <a href="{% url 'bookmark-jobs' %}" class="btn btn-soft-warning btn-hover w-100 mt-2"><i class="uil uil-bookmark"></i> Add Bookmark</a>
                                                 </div>
                                             </div><!--end card-body-->
@@ -510,11 +510,28 @@
                             <div class="modal-content">
                                 <div class="modal-body p-5">
                                     <div class="text-center mb-4">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Apply For This Program</h5>
                                     </div>
                                     <div class="position-absolute end-0 top-0 p-3">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <!-- Hani -->
+                                    <h1>hello</h1>
+                                    <div class="form-group">
+                                      <form  method="post" enctype='multipart/form-data' >
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button class = "btn btn-secondary">Post</button>
+
+                                      </div>
+                                        <h3>current uni:   {{user.university}}</h3>
+                                      <h3>current student: {{user.student}}</h3>
+
+                                      <script type="text/javascript">
+                                           var user = "{{ user.id }}";
+                                           document.getElementById("use").value = user;
+                                      </script>
+                                    <!-- End Hani -->
                                     <div class="mb-3">
                                         <label for="nameControlInput" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="nameControlInput" placeholder="Enter your name">

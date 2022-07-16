@@ -31,7 +31,7 @@
                                         <div class="col-lg-3">
                                             <div class="filter-search-form filter-border mt-3 mt-lg-0">
                                                 <i class="uil uil-briefcase-alt"></i>
-                                                <input type="search" id="job-title" class="form-control filter-input-box" placeholder="University, program name ..." name="searched">
+                                                <input type="search" id="job-title" class="form-control filter-input-box" placeholder="University name ..." name="searched">
                                             </div>
                                         </div><!--end col-->
                                         <div class="col-lg-3">
@@ -626,7 +626,7 @@
                                                                           <!--end col-->
                                                                           <div class="col-md-3">
                                                                               <div class="mb-2 mb-md-0">
-                                                                                  <h5 class="fs-18 mb-1"><a href="{% url 'job-details' %}" class="text-dark">{{ uni.name}}</a>
+                                                                                  <h5 class="fs-18 mb-1"><a href="{{ uni.get_absolute_url }}" class="text-dark">{{ uni.name}}</a>
                                                                                   </h5>
                                                                                   <p class="text-muted fs-14 mb-0">{{ uni.website }}</p>
                                                                               </div>

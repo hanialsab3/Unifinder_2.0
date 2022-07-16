@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.forms import ModelForm
-# from .models import University, Student, Application, Program
+from accounts.models import University, Student, Application, Program
 
 # class ProfilePageStudentForm(ModelForm):
 #     class Meta:
@@ -83,17 +83,17 @@ class SignUpForm(UserCreationForm):                           #add init function
 #             'application_debug': forms.TextInput(attrs={'class':'form-control'}),
 #         }
 #
-# class ApplicationForm(ModelForm):
-#     class Meta:
-#         model = Application
-#         fields = ('uni','student','motivation',"cv")
-#
-#         widgets = {
-#             'uni': forms.Select(attrs={'class':'form-select'}),
-#             'student': forms.Select(attrs={'class':'form-select'}),
-#             'motivation': forms.TextInput(attrs={'class':'form-control'}),
-#             'cv': forms.TextInput(attrs={'class':'form-control'}),
-#         }
+class ApplicationForm(ModelForm):
+    class Meta:
+        model = Application
+        fields = ('uni','student','motivation',"cv")
+
+        widgets = {
+            'uni': forms.Select(attrs={'class':'form-select'}),
+            'student': forms.Select(attrs={'class':'form-select'}),
+            'motivation': forms.TextInput(attrs={'class':'form-control'}),
+            'cv': forms.TextInput(attrs={'class':'form-control'}),
+        }
 #
 #
 # class UniversityProfileForm(ModelForm):

@@ -1,6 +1,7 @@
 from django.urls import path
 # urls.py
 from pages import views
+
 urlpatterns = [
     # Jobs
     path('job-list', views.JobList.as_view(),name="job-list"),
@@ -16,6 +17,8 @@ urlpatterns = [
     path('candidate-details', views.CandidateDetails.as_view(),name="candidate-details"),
     path('company-list', views.CompanyList.as_view(),name="company-list"),
     path('company-details', views.CompanyDetails.as_view(),name="company-details"),
+    # path('<int:pk>/profile_university', ShowUniversityProfilePageView.as_view(),name='show_university_profile_page'),
+
 
     # Extra-Pages
     path('sign-up', views.SignUp.as_view(),name="sign-up"),

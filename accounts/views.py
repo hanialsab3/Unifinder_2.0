@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, UpdateView, TemplateView
 from django.contrib.auth.models import User
 from rest_framework import viewsets
@@ -100,17 +100,17 @@ class EditUniversityProfilePageView(UpdateView):
     success_url = reverse_lazy('home')
 
 
-class ShowUniversityProfilePageView(DetailView):
-    model = University
-    template_name = 'registration/university_profile.html'
-
-    def get_context_data(self, **kwargs):
-        universities = University.objects.all()
-        context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
-        page_student = get_object_or_404(University, id=self.kwargs['pk'])
-        context["page_student"] = page_student
-        context['programs'] = Program.objects.all()
-        return context
+# class ShowUniversityProfilePageView(DetailView):
+#     model = University
+#     template_name = 'pages/candidates-company/company-details.html'
+#
+#     def get_context_data(self, **kwargs):
+#         universities = University.objects.all()
+#         context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
+#         page_student = get_object_or_404(University, id=self.kwargs['pk'])
+#         context["page_student"] = page_student
+#         context['programs'] = Program.objects.all()
+#         return context
 
 class SignUp(CreateView):
     form_class = SignUpForm

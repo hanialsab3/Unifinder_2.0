@@ -1,9 +1,10 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render
-from accounts.models import Student, University, Program
+from django.shortcuts import render, redirect, get_object_or_404
+from accounts.models import Student, University, Program, Application
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from accounts import forms
+from accounts.forms import ApplicationForm
 
 def search_universities(request):
     if request.method == "POST":
@@ -37,9 +38,21 @@ class BookmarkJobs(TemplateView):
 class Profile(TemplateView):
     template_name = "profile.html"
 
+class ShowUniversityProfilePageView(DetailView):
+    model = University
+    template_name = 'pages/candidates-company/company-details.html'
+
+    def get_context_data(self, **kwargs):
+        universities = University.objects.all()
+        context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
+        page_student = get_object_or_404(University, id=self.kwargs['pk'])
+        context["page_student"] = page_student
+        context['programs'] = Program.objects.all()
+        return context
+
 class ProgramDetailView(DetailView):
     model = Program
-    template_name = 'program_detail.html'
+    template_name = 'pages/jobs/job-details.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,3 +68,15 @@ class ProgramDetailView(DetailView):
 #     form_class = ProgramForm
 #     template_name = 'update_program.html'
 #     # fields =
+
+class AddApplicationView(CreateView):
+    model = Application
+    form_class = ApplicationForm
+    template_name = 'pages/jobs/add_application.html'
+
+class ApplicationDetailView(DetailView):
+    model = Application
+    template_name = 'pages/jobs/application_detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
