@@ -94,11 +94,11 @@ class StudentForm(ModelForm):
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
-        fields = ('uni','student','motivation',"cv")
+        fields = ('motivation',"cv")
 
         widgets = {
-            'uni': forms.Select(attrs={'class':'form-select'}),
-            'student': forms.Select(attrs={'class':'form-select'}),
+            # 'uni': forms.Select(attrs={'class':'form-select'}),
+            # 'student': forms.Select(attrs={'class':'form-select'}),
             'motivation': forms.TextInput(attrs={'class':'form-control'}),
             'cv': forms.TextInput(attrs={'class':'form-control'}),
         }

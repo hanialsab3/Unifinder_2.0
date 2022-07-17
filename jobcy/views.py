@@ -74,9 +74,24 @@ class AddApplicationView(CreateView):
     form_class = ApplicationForm
     template_name = 'pages/jobs/add_application.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_program = get_object_or_404(Program, id=self.kwargs['pk'])
+        context['program'] = page_program
+        return context
+
+    def form_valid(self,form):
+        page_program = get_object_or_404(Program, id=self.kwargs['pk'])
+        form.instance.uni = page_program.uni
+        if (self.request.user.student):
+            form.instance.student = self.request.user.student
+        return super().form_valid(form)
+
 class ApplicationDetailView(DetailView):
     model = Application
     template_name = 'pages/jobs/application_detail.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        page_program = get_object_or_404(Program, id=self.kwargs['pk'])
+        context['program'] = page_program
         return context

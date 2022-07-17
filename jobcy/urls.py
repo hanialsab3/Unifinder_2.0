@@ -56,7 +56,7 @@ urlpatterns = [
     path('<int:pk>/flaps', ProgramDetailView.as_view(), name='flapmap'),
     # path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
     # path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
-    path('applications/add/', views.AddApplicationView.as_view(), name='add_application'),
+    path('add/<int:pk>', views.AddApplicationView.as_view(), name='add_application'), #should be applications/add/...
     path('search_universities', views.search_universities, name='search-universities'),
     path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application-detail'),
 
