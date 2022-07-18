@@ -80,7 +80,7 @@
                                                             </div>
                                                             {% endif %}
                                                         </div>
-                                                        <form action="{% url 'signup' %}" method=POST class="auth-form">
+                                                        <form action="{% url 'university_signup' %}" method=POST class="auth-form">
                                                             {% csrf_token %}
                                                             {{ form.as_p }}
                                                             <!-- <div class="mb-3">

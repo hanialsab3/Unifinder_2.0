@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, UpdateView, TemplateView
 from django.contrib.auth.models import User
 from rest_framework import viewsets
@@ -22,6 +22,8 @@ from . import forms
 # def login_user(request):
 #     return render(request, 'pages/extra-pages/sign-in.html', {})
 
+class signup_select (TemplateView):
+    template_name = "pages/extra-pages/sign-up-select.html"
 
 def login_user(request):
     if request.method == "POST":
@@ -49,10 +51,29 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, ("Registration Successful!"))
-            return redirect('index')
+            return redirect('create_student_profile_page')
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {
+        'form':form,
+    })
+
+def university_register_user(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            # form.cleaned_data["is_staff"] = True
+            form.instance.is_staff = True
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ("Registration Successful!"))
+            return redirect('create_university_profile_page')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/university_signup.html', {
         'form':form,
     })
 

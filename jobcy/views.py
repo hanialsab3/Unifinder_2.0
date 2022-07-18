@@ -17,8 +17,14 @@ def search_universities(request):
 
 class Index(TemplateView):
     template_name = "index/index-1.html"
+
+
+    # def get_queryset(self):
+    #     return User.objects.filter(user=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        current_user = self.request.user
         context['students'] = Student.objects.all()[:5]
         context['universities'] = University.objects.all()[:5]
         return context
