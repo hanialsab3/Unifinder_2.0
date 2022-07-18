@@ -45,9 +45,9 @@ class ShowUniversityProfilePageView(DetailView):
     def get_context_data(self, **kwargs):
         universities = University.objects.all()
         context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
-        page_student = get_object_or_404(University, id=self.kwargs['pk'])
-        context["page_student"] = page_student
-        context['programs'] = Program.objects.all()
+        page_university = get_object_or_404(University, id=self.kwargs['pk'])
+        context["page_university"] = page_university
+        context['programs'] = Program.objects.filter( uni = page_university)
         return context
 
 class ProgramDetailView(DetailView):
