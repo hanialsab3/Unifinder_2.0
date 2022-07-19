@@ -59,6 +59,7 @@ urlpatterns = [
     path('add/<int:pk>', views.AddApplicationView.as_view(), name='add_application'), #should be applications/add/...
     path('search_universities', views.search_universities, name='search-universities'),
     path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application-detail'),
+    path('<int:pk>/applicants_list', views.ApplicantsListView.as_view(), name='applicants-list'),
 
 ]+ static(settings.STATIC_URL,)
 

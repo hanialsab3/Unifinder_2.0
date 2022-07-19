@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from accounts.models import Student, University, Program, Application
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from accounts import forms
 from accounts.forms import ApplicationForm
 
@@ -25,8 +26,13 @@ class Index(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         current_user = self.request.user
+        # if (current_user.is_staff):
+        #     context['is_uni'] = True
+        # else:
+        #     context['is_uni'] = False
         context['students'] = Student.objects.all()[:5]
         context['universities'] = University.objects.all()[:5]
+
         return context
 
 class Index2(TemplateView):
@@ -98,6 +104,13 @@ class ApplicationDetailView(DetailView):
     template_name = 'pages/jobs/application_detail.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        page_program = get_object_or_404(Program, id=self.kwargs['pk'])
-        context['program'] = page_program
+        return context
+
+class ApplicantsListView(TemplateView):
+    template_name = 'applicants-list.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_university = self.request.user.university
+        applications = Application.objects.filter(uni = current_university)
+        context['applications'] = applications
         return context

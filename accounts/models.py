@@ -47,18 +47,6 @@ class Student(models.Model):
     def get_absolute_url(self):
         return reverse("show_profile_page", args=[str(self.id)])
 
-class Application(models.Model):
-    student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)
-    uni = models.ForeignKey(University, on_delete=models.CASCADE)
-    motivation = models.CharField(max_length=120)  #file
-    cv = models.CharField(max_length=120)
-
-    def __str__(self):
-        return "Application Number " + str(self.id)
-
-    def get_absolute_url(self):
-        return reverse("application-detail", args=[str(self.id)])
-
 class Program(models.Model):
     name =  models.CharField(max_length=120)
     uni = models.ForeignKey(University, on_delete=models.CASCADE)
@@ -69,3 +57,18 @@ class Program(models.Model):
 
     def get_absolute_url(self):
         return reverse("flapmap", args=[str(self.id)])
+
+class Application(models.Model):
+    student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)
+    uni = models.ForeignKey(University, on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, null=True, on_delete=models.CASCADE)
+    motivation = models.CharField(max_length=120)  #file
+    cv = models.CharField(max_length=120)
+    reviewed = models.BooleanField(default=False)
+    accepted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "Application Number " + str(self.id)
+
+    def get_absolute_url(self):
+        return reverse("application-detail", args=[str(self.id)])
