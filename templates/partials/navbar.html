@@ -197,7 +197,8 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown">
                                 <!-- <li><a class="dropdown-item" href="{#{% url 'accounts:show_profile_page' user.student.id %}#}">Show Profile Page</a></li> -->
                                 {% if user.is_staff %}
-                                  <li><a class="dropdown-item" href="{% url 'applicants-list' user.university.id %}">Manage Applicants</a></li>
+
+                                  {# <li><a class="dropdown-item" href="{% url 'applicants-list' user.university.id %}">Manage Applicants</a></li> #}
                                 {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'manage-jobs' %}">Manage Jobs</a></li>
                                 <li><a class="dropdown-item" href="{% url 'bookmark-jobs' %}">Bookmarks Jobs</a></li>

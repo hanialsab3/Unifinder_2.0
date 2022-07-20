@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.models import Student, University, Program, Application
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from accounts import forms
 from accounts.forms import ApplicationForm
@@ -99,11 +99,14 @@ class AddApplicationView(CreateView):
             form.instance.student = self.request.user.student
         return super().form_valid(form)
 
-class ApplicationDetailView(DetailView):
+class ApplicationDetailView(UpdateView):
     model = Application
-    template_name = 'pages/jobs/application_detail.html'
+    template_name = 'application_detail.html'
+    fields = ['reviewed','accepted']
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        page_application = get_object_or_404(Application, id=self.kwargs['pk'])
+        context['application'] = page_application
         return context
 
 class ApplicantsListView(TemplateView):
