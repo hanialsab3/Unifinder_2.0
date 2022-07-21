@@ -109,6 +109,15 @@ class ApplicationDetailView(UpdateView):
         context['application'] = page_application
         return context
 
+class ApplicationListView(TemplateView):
+    template_name = 'application-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_student = get_object_or_404(Student, id=self.kwargs['pk'])
+        context['applications'] = Application.objects.filter( student = page_student)
+        return context
+
 class ApplicantsListView(TemplateView):
     template_name = 'applicants-list.html'
     def get_context_data(self, **kwargs):

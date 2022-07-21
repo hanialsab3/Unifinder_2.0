@@ -40,7 +40,7 @@ class Student(models.Model):
     # uni = models.ManyToManyField(University)
     def __str__(self):
         if hasattr(self.user,'get_username'):
-            return "Student: " + self.user.get_username()
+            return self.user.first_name + " " + self.user.last_name
         else:
             return "No Username"
 
@@ -53,7 +53,7 @@ class Program(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return "Program " + str(self.id)
+        return  self.name
 
     def get_absolute_url(self):
         return reverse("flapmap", args=[str(self.id)])

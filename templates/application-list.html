@@ -83,64 +83,23 @@
                             </div><!--end row-->
                             <div class="row">
                                 <div class="col-lg-12">
+                                  <!-- Hani -->
+                                  {% for app in applications %}
                                     <div class="job-box card mt-4">
                                         <div class="card-body p-4">
                                             <div class="row">
                                                 <div class="col-lg-1">
-                                                    <a href="company-details.html"><img src="{% static 'images/featured-job/img-01.png' %}" alt="" class="img-fluid rounded-3"></a>
+                                                    <a href="company-details.html"><img src="{{ app.uni.profile_picture.url }}" alt="" class="img-fluid rounded-3"></a>
                                                 </div><!--end col-->
                                                 <div class="col-lg-9">
                                                     <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">Business Associate</a></h5>
+                                                        <h5 class="fs-17 mb-1"><a href="{{app.get_absolute_url}}" class="text-dark">{{ app.uni }}</a> <small class="text-muted fw-normal">(2-4 Yrs Exp.)</small></h5>
                                                         <ul class="list-inline mb-0">
                                                             <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
+                                                                <p class="text-muted fs-14 mb-0">{{app.program}}</p>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="mt-2">
-                                                            <span class="badge bg-soft-danger mt-1">Part Time</span>
-                                                            <span class="badge bg-soft-warning mt-1">Urgent</span>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                                <div class="col-lg-2 align-self-center">
-                                                    <ul class="list-inline mt-3 mb-0">
-                                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                            <a href="{% url 'manage-jobs-post' %}" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
-                                                                <i class="uil uil-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal"  class="avatar-sm bg-soft-danger d-inline-block text-center rounded-circle fs-18">
-                                                                <i class="uil uil-trash-alt"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </div>
-                                    </div><!--end job-box-->
-                                    <div class="job-box card mt-4">
-                                        <div class="card-body p-4">
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                    <a href="company-details.html"><img src="{% static 'images/featured-job/img-02.png' %}" alt="" class="img-fluid rounded-3"></a>
-                                                </div><!--end col-->
-                                                <div class="col-lg-9">
-                                                    <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">Marketing Director</a> <small class="text-muted fw-normal">(2-4 Yrs Exp.)</small></h5>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0">Creative Agency</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> New York</p>
+                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> {{app.uni.location}}</p>
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
@@ -169,6 +128,8 @@
                                             </div><!--end row-->
                                         </div>
                                     </div><!--end job-box-->
+                                    {% endfor %}
+                                    <!-- end Hani -->
                                     <div class="job-box card mt-4">
                                         <div class="card-body p-4">
                                             <div class="row">
