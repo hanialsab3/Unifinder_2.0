@@ -50,7 +50,7 @@ urlpatterns = [
     path('manage-jobs',views.ManageJobs.as_view(),name='manage-jobs'),
     path('manage-jobs-post',views.ManageJobs.as_view(),name='manage-jobs-post'),
     path('bookmark-jobs',views.BookmarkJobs.as_view(),name='bookmark-jobs'),
-    path('profile',views.Profile.as_view(),name='profile'),
+    # path('profile',views.Profile.as_view(),name='profile'),
 
     path('<int:pk>/profile_university', ShowUniversityProfilePageView.as_view(),name='show_university_profile_page'),
     path('<int:pk>/flaps', ProgramDetailView.as_view(), name='flapmap'),

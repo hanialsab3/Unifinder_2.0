@@ -47,8 +47,8 @@ class ManageJobsPost(TemplateView):
     template_name = "manage-jobs-post.html"
 class BookmarkJobs(TemplateView):
     template_name = "bookmark-jobs.html"
-class Profile(TemplateView):
-    template_name = "profile.html"
+# class Profile(TemplateView):
+#     template_name = "profile.html"
 
 class ShowUniversityProfilePageView(DetailView):
     model = University
