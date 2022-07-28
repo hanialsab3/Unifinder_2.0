@@ -53,7 +53,8 @@ urlpatterns = [
     # path('profile',views.Profile.as_view(),name='profile'),
 
     path('<int:pk>/profile_university', ShowUniversityProfilePageView.as_view(),name='show_university_profile_page'),
-    path('<int:pk>/flaps', ProgramDetailView.as_view(), name='flapmap'),
+    path('<int:pk>/programs', ProgramDetailView.as_view(), name='program'),
+    path('programs/add<int:pk>', views.AddProgramView.as_view(), name='add-program'),
     # path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
     # path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
     path('add/<int:pk>', views.AddApplicationView.as_view(), name='add_application'), #should be applications/add/...

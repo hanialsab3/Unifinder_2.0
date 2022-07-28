@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from accounts import forms
+from .forms import ProgramForm
 from accounts.forms import ApplicationForm
 
 def search_universities(request):
@@ -52,7 +53,7 @@ class BookmarkJobs(TemplateView):
 
 class ShowUniversityProfilePageView(DetailView):
     model = University
-    template_name = 'pages/candidates-company/company-details.html'
+    template_name = 'university-profile.html'
 
     def get_context_data(self, **kwargs):
         universities = University.objects.all()
@@ -70,11 +71,21 @@ class ProgramDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
-# class AddProgramView(CreateView):
-#     model = Program
-#     form_class = ProgramForm
-#     template_name = 'add_program.html'
-#
+class AddProgramView(CreateView):
+    model = Program
+    form_class = ProgramForm
+    template_name = 'add_program.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_program_id = self.kwargs['pk']
+        context['university_id'] = page_program_id
+        return context
+
+    def form_valid(self,form):
+        form.instance.uni = get_object_or_404(University, id=self.kwargs['pk'])
+        return super().form_valid(form)
+
 # class UpdateProgramView(UpdateView):
 #     model = Program
 #     form_class = ProgramForm

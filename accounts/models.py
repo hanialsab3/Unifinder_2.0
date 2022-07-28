@@ -56,7 +56,7 @@ class Program(models.Model):
         return  self.name
 
     def get_absolute_url(self):
-        return reverse("flapmap", args=[str(self.id)])
+        return reverse("program", args=[str(self.id)])
 
 class Application(models.Model):
     student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)
