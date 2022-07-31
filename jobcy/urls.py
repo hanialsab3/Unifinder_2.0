@@ -57,6 +57,7 @@ urlpatterns = [
     path('programs/add<int:pk>', views.AddProgramView.as_view(), name='add-program'),
     # path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
     # path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
+    path('programs/<int:pk>', views.DeleteProgramView.as_view(), name='delete-program'), # should be programs/delete/<int:pk>/
     path('add/<int:pk>', views.AddApplicationView.as_view(), name='add_application'), #should be applications/add/...
     path('search_universities', views.search_universities, name='search-universities'),
     path('applications_list/<int:pk>', views.ApplicationListView.as_view(), name='application-list'),

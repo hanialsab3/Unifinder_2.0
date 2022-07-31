@@ -2,11 +2,12 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.models import Student, University, Program, Application
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from accounts import forms
 from .forms import ProgramForm
 from accounts.forms import ApplicationForm
+from django.urls import reverse_lazy
 
 def search_universities(request):
     if request.method == "POST":
@@ -65,7 +66,7 @@ class ShowUniversityProfilePageView(DetailView):
 
 class ProgramDetailView(DetailView):
     model = Program
-    template_name = 'pages/jobs/job-details.html'
+    template_name = 'program-details.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -91,6 +92,11 @@ class AddProgramView(CreateView):
 #     form_class = ProgramForm
 #     template_name = 'update_program.html'
 #     # fields =
+
+class DeleteProgramView(DeleteView):
+    model = Program
+    template_name = 'delete-program.html'
+    success_url = reverse_lazy('index')
 
 class AddApplicationView(CreateView):
     model = Application

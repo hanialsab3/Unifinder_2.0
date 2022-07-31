@@ -2,15 +2,13 @@
 {% load static %}
 {% block title %}Program Details{% endblock title %}
 {% block content %}
-
-
                     <!-- Start home -->
                     <section class="page-title-box">
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <div class="text-center text-white">
-                                        <h3 class="mb-4">Job Details</h3>
+                                        <h3 class="mb-4">Program Details</h3>
                                         <div class="page-next">
                                             <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                                 <ol class="breadcrumb justify-content-center">
@@ -58,7 +56,7 @@
                                             <div>
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <h5 class="mb-1">Product Designer / UI Designer</h5>
+                                                        <h5 class="mb-1">{{program.name}}</h5>
                                                         <ul class="list-inline text-muted mb-0">
                                                             <li class="list-inline-item">
                                                                 <i class="mdi mdi-account"></i> 8 Vacancy
@@ -75,10 +73,17 @@
                                                                     <a href="javascript:void(0)"><i class="uil uil-heart-alt"></i></a>
                                                                 </div>
                                                             </li>
+
                                                             <li class="list-inline-item">
-                                                                <div class="favorite-icon">
-                                                                    <a href="javascript:void(0)"><i class="uil uil-setting"></i></a>
-                                                                </div>
+                                                                <div class="d-flex gap-2 flex-wrap">
+                                                                    <div class="dropdown">
+                                                                        <button class="uil uil-setting" type="button" id="dropdownMenuprimary" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <span class="arrow-down"></span>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuprimary">
+                                                                        <li><a class="dropdown-item" href="{% url 'delete-program' program.pk %}">Delete</a></li>
+                                                                        </ul>
+                                                                    </div>
                                                             </li>
                                                         </ul>
                                                     </div><!--end col-->
@@ -89,7 +94,7 @@
                                                 <div class="row g-2">
                                                     <div class="col-lg-3">
                                                         <div class="border rounded-start p-3">
-                                                            <p class="text-muted mb-0 fs-13">Experience</p>
+                                                            <p class="text-muted mb-0 fs-13">Duration</p>
                                                             <p class="fw-medium fs-15 mb-0">Minimum 1 Year</p>
                                                         </div>
                                                     </div>
@@ -434,7 +439,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3">
-                                                    <a href="#applyNow" data-bs-toggle="modal" class="btn btn-primary btn-hover w-100 mt-2">Apply Now <i class="uil uil-arrow-right"></i></a>
+                                                    <a href="{% url 'add_application' program.pk %}" class="btn btn-primary btn-hover w-100 mt-2">Apply Now <i class="uil uil-arrow-right"></i></a>
                                                     <a href="{% url 'bookmark-jobs' %}" class="btn btn-soft-warning btn-hover w-100 mt-2"><i class="uil uil-bookmark"></i> Add Bookmark</a>
                                                 </div>
                                             </div><!--end card-body-->
@@ -512,11 +517,28 @@
                             <div class="modal-content">
                                 <div class="modal-body p-5">
                                     <div class="text-center mb-4">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Apply For This Program</h5>
                                     </div>
                                     <div class="position-absolute end-0 top-0 p-3">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <!-- Hani -->
+                                    <h1>hello</h1>
+                                    <div class="form-group">
+                                      <form  method="post" enctype='multipart/form-data' >
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button class = "btn btn-secondary">Post</button>
+
+                                      </div>
+                                        <h3>current uni:   {{user.university}}</h3>
+                                      <h3>current student: {{user.student}}</h3>
+
+                                      <script type="text/javascript">
+                                           var user = "{{ user.id }}";
+                                           document.getElementById("use").value = user;
+                                      </script>
+                                    <!-- End Hani -->
                                     <div class="mb-3">
                                         <label for="nameControlInput" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="nameControlInput" placeholder="Enter your name">
