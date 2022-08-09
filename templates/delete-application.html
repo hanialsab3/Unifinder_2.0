@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 {% if user.is_authenticated %}
-{% if user == program.uni.user %}
-<h1>Delete Program</h1>
+{% if user == application.student.user %}
+<h1>Delete Application</h1>
 <br>
 
 
@@ -11,7 +11,7 @@
       <div class="container">
           <div class="row align-items-center mt-5">
               <div class="col-lg-6">
-                <h3>Are you sure you want to delete the program?</h3>
+                <h3>Are you sure you want to delete the Application?</h3>
   <form  method="post" class="contact-form" mt-4enctype='multipart/form-data' >
     {% csrf_token %}
     {{ form.as_p }}

@@ -20,8 +20,8 @@
                                             <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                                 <ol class="breadcrumb justify-content-center">
                                                     <li class="breadcrumb-item"><a href="{% url 'index'%}">Home</a></li>
-                                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
-                                                    <li class="breadcrumb-item active" aria-current="page"> Company Details </li>
+                                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Universities</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page"> {{ university.name }} </li>
                                                 </ol>
                                             </nav>
                                         </div>
@@ -61,7 +61,7 @@
                                                 <img src="{% static 'images/featured-job/img-01.png' %}" alt="" class="avatar-lg rounded-circle">
                                                 {% endif %}
                                                 <h6 class="fs-18 mb-1 mt-4">{{ object.name }}</h6>
-                                                <p class="text-muted mb-4">Since July 1962</p>
+                                                <p class="text-muted mb-4"><!-- Since July 1962 --></p>
                                                 <ul class="candidate-detail-social-menu list-inline mb-0">
                                                     <li class="list-inline-item">
                                                         <a href="javascript:void(0)" class="social-link"><i class="uil uil-twitter-alt"></i></a>
@@ -78,19 +78,23 @@
                                         <div class="candidate-profile-overview  card-body border-top p-4">
                                             <h6 class="fs-17 fw-semibold mb-3">University Overview</h6>
                                             <ul class="list-unstyled mb-0">
-                                                <li>
+                                              <!--   <li>
                                                     <div class="d-flex">
                                                         <label class="text-dark">Owner Name</label>
                                                         <div>
                                                             <p class="text-muted mb-0">Charles Dickens</p>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li> -->
                                                 <li>
                                                     <div class="d-flex">
                                                         <label class="text-dark">Students</label>
                                                         <div>
-                                                            <p class="text-muted mb-0">1500 - 1850</p>
+                                                          {% if object.total_students  %}
+                                                            <p class="text-muted mb-0">{{ object.total_students }}</p>
+                                                          {% else %}
+                                                            <p class="text-muted mb-0">Not Available</p>
+                                                          {% endif %}
                                                         </div>
                                                     </div>
                                                 </li>
@@ -112,9 +116,9 @@
                                                 </li>
                                                 <li>
                                                     <div class="d-flex">
-                                                        <label class="text-dark">Established</label>
+                                                        <label class="text-dark">Phone</label>
                                                         <div>
-                                                            <p class="text-muted mb-0">July 10 2017</p>
+                                                            <p class="text-muted mb-0">{{ object.phone }}</p>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -205,22 +209,22 @@
                                                               </div>
                                                               <div class="col-lg-10">
                                                                   <div class="mt-3 mt-lg-0">
-                                                                      <h5 class="fs-17 mb-1"><a href="{{ program.get_absolute_url }}" class="text-dark">{{ program.name }}</a> <small class="text-muted fw-normal">(2 year program.)</small></h5>
+                                                                      <h5 class="fs-17 mb-1"><a href="{{ program.get_absolute_url }}" class="text-dark">{{ program.name }}</a> <small class="text-muted fw-normal">({{ program.duration }} program.)</small></h5>
                                                                       <ul class="list-inline mb-0">
                                                                           <li class="list-inline-item">
-                                                                              <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
+                                                                              {# <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p> #}
                                                                           </li>
                                                                           <li class="list-inline-item">
-                                                                              <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
+                                                                              <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i>{{program.location}}</p>
                                                                           </li>
                                                                           <li class="list-inline-item">
-                                                                              <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
+                                                                              <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>{{ program.tuition }}</p>
                                                                           </li>
                                                                       </ul>
                                                                       <div class="mt-2">
-                                                                          <span class="badge bg-soft-success mt-1">Full Time</span>
+                                                                          <!--<span class="badge bg-soft-success mt-1">Full Time</span>
                                                                           <span class="badge bg-soft-warning mt-1">Urgent</span>
-                                                                          <span class="badge bg-soft-info mt-1">Private</span>
+                                                                          <span class="badge bg-soft-info mt-1">Private</span> -->
                                                                       </div>
                                                                   </div>
                                                               </div><!--end col-->
@@ -235,8 +239,8 @@
                                                                   <div>
                                                                       <ul class="list-inline mb-0">
                                                                           <li class="list-inline-item"><i class="uil uil-tag"></i> Keywords :</li>
-                                                                          <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
-                                                                          <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
+                                                                        <!--  <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
+                                                                          <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li> -->
                                                                       </ul>
                                                                   </div>
                                                               </div>

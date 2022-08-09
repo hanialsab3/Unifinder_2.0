@@ -20,7 +20,8 @@ class University(models.Model):
     name = models.CharField(max_length=120, null=True)
     phone = models.CharField(max_length=120, null=True)
     location = models.CharField(max_length=120, null=True)
-    about = models.TextField(max_length=256, null=True)
+    about = models.TextField(null=True)
+    total_students = models.IntegerField(null=True, blank=True)
 
     def no_of_students(self):
         students = Student.objects.filter(uni=self)
@@ -36,8 +37,13 @@ class University(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    application_debug = models.CharField(max_length=120)
+    about = models.TextField(null=True)
     # uni = models.ManyToManyField(University)
+    profile_picture = models.ImageField(null=True, blank=True)
+    age = models.CharField(max_length=120, null=True, blank=True)
+    location = models.CharField(max_length=255, null=True)
+
+
     def __str__(self):
         if hasattr(self.user,'get_username'):
             return self.user.first_name + " " + self.user.last_name
@@ -50,7 +56,16 @@ class Student(models.Model):
 class Program(models.Model):
     name =  models.CharField(max_length=120)
     uni = models.ForeignKey(University, on_delete=models.CASCADE)
-    description = models.TextField()
+    description = models.TextField( null=True)
+    profile_picture = models.ImageField(null=True, blank=True)
+    tuition = models.CharField(max_length=120, null=True)
+    requirements = models.TextField(max_length=256, null=True)
+    location = models.CharField(max_length=255, null=True)
+    deadline = models.CharField(max_length=120, null=True)
+    duration = models.CharField(max_length=120, null=True)
+    degree_studies = models.CharField(max_length=120, null=True)
+    degree = models.CharField(max_length=120, null=True)
+
 
     def __str__(self):
         return  self.name

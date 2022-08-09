@@ -7,10 +7,10 @@ from .models import University, Student, Application, Program
 class ProfilePageStudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ('application_debug',)
+        fields = ('about',)
 
         widgets = {
-            'application_debug': forms.TextInput(attrs={'class':'form-control'})
+            'about': forms.TextInput(attrs={'class':'form-control'})
         }
 
 class ProfilePageUniverityForm(ModelForm):
@@ -84,11 +84,11 @@ class UniversityForm(ModelForm):
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ('user','application_debug',)
+        fields = ('user','about',)
 
         widgets = {
             'user': forms.TextInput(attrs={'class':'form-control','value':'','id':'use', 'type':'hidden'}),
-            'application_debug': forms.TextInput(attrs={'class':'form-control'}),
+            'about': forms.TextInput(attrs={'class':'form-control'}),
         }
 
 class ApplicationForm(ModelForm):

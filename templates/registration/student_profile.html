@@ -54,8 +54,13 @@
                                     <div class="card profile-sidebar me-lg-4">
                                         <div class="card-body p-4">
                                             <div class="text-center pb-4 border-bottom">
+                                                {% if user.student.profile_picture %}
+                                                <img src="{{ user.student.profile_picture.url }}" alt=""
+                                                class="avatar-lg img-thumbnail rounded-circle mb-4" />
+                                                {% else %}
                                                 <img src="{% static 'images/profile.jpg' %}" alt=""
-                                                    class="avatar-lg img-thumbnail rounded-circle mb-4" />
+                                                class="avatar-lg img-thumbnail rounded-circle mb-4" />
+                                                {% endif %}
                                                 <h5 class="mb-0">{{user.first_name}} {{user.last_name}}</h5>
                                                 <p class="text-muted">Developer</p>
                                                 <ul class="list-inline d-flex justify-content-center align-items-center ">

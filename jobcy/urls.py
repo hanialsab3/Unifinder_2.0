@@ -63,6 +63,7 @@ urlpatterns = [
     path('applications_list/<int:pk>', views.ApplicationListView.as_view(), name='application-list'),
     path('applicants_list/', views.ApplicantsListView.as_view(), name='applicants-list'),
     path('application/<int:pk>', views.ApplicationDetailView.as_view(), name='application-detail'),
+    path('applications/<int:pk>', views.DeleteApplicationView.as_view(), name='delete-application'), # should be applications/delete/<int:pk>/
 
 
 ]+ static(settings.STATIC_URL,)

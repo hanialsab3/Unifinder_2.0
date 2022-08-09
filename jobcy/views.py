@@ -101,7 +101,7 @@ class DeleteProgramView(DeleteView):
 class AddApplicationView(CreateView):
     model = Application
     form_class = ApplicationForm
-    template_name = 'pages/jobs/add_application.html'
+    template_name = 'add_application.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -112,6 +112,7 @@ class AddApplicationView(CreateView):
     def form_valid(self,form):
         page_program = get_object_or_404(Program, id=self.kwargs['pk'])
         form.instance.uni = page_program.uni
+        form.instance.program = page_program
         if (self.request.user.student):
             form.instance.student = self.request.user.student
         return super().form_valid(form)
@@ -125,6 +126,11 @@ class ApplicationDetailView(UpdateView):
         page_application = get_object_or_404(Application, id=self.kwargs['pk'])
         context['application'] = page_application
         return context
+
+class DeleteApplicationView(DeleteView):
+    model = Application
+    template_name = 'delete-application.html'
+    success_url = reverse_lazy('index')
 
 class ApplicationListView(TemplateView):
     template_name = 'application-list.html'
