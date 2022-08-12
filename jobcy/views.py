@@ -13,7 +13,8 @@ def search_universities(request):
     if request.method == "POST":
         searched = request.POST.get('searched')
         universities = University.objects.filter(name__contains=searched)
-        return render(request, 'pages/candidates-company/candidate-list.html',{'searched':searched, 'universities': universities})
+        programs = Program.objects.filter(name__contains=searched)
+        return render(request, 'pages/candidates-company/candidate-list.html',{'searched':searched, 'universities': universities, 'programs': programs})
     else:
         return render(request, 'pages/candidates-company/candidate-list.html',{})
 

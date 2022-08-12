@@ -112,8 +112,8 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <div class="border rounded-end p-3">
-                                                            <p class="text-muted fs-13 mb-0">Offer Salary</p>
-                                                            <p class="fw-medium mb-0">$2150/ Month</p>
+                                                            <p class="text-muted fs-13 mb-0">Tuition</p>
+                                                            <p class="fw-medium mb-0">{{ program.tuition }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -445,11 +445,11 @@
                                         <div class="card company-profile mt-4">
                                             <div class="card-body p-4">
                                                 <div class="text-center">
-                                                    <img src="{% static 'images/featured-job/img-02.png' %}" alt="" class="img-fluid rounded-3">
+                                                    <img src="{{ program.uni.profile_picture.url }}" alt="" class="img-fluid rounded-3">
 
                                                     <div class="mt-4">
-                                                        <h6 class="fs-17 mb-1">Jobcy Technology Pvt.Ltd</h6>
-                                                        <p class="text-muted">Since July 2017</p>
+                                                        <h6 class="fs-17 mb-1">{{program.uni.name }}</h6>
+                                                        <!-- <p class="text-muted">Since July 2017</p> -->
                                                     </div>
                                                 </div>
                                                 <ul class="list-unstyled mt-4">
@@ -458,7 +458,7 @@
                                                             <i class="uil uil-phone-volume text-primary fs-4"></i>
                                                             <div class="ms-3">
                                                                 <h6 class="fs-14 mb-2">Phone</h6>
-                                                                <p class="text-muted fs-14 mb-0">+589 560 56555</p>
+                                                                <p class="text-muted fs-14 mb-0">{{ program.uni.phone }}</p>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -467,7 +467,7 @@
                                                             <i class="uil uil-envelope text-primary fs-4"></i>
                                                             <div class="ms-3">
                                                                 <h6 class="fs-14 mb-2">Email</h6>
-                                                                <p class="text-muted fs-14 mb-0">pixltechnology@info.com</p>
+                                                                <p class="text-muted fs-14 mb-0">{{ program.uni.email }}</p>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -476,7 +476,7 @@
                                                             <i class="uil uil-globe text-primary fs-4"></i>
                                                             <div class="ms-3">
                                                                 <h6 class="fs-14 mb-2">Website</h6>
-                                                                <p class="text-muted fs-14 text-break mb-0">www.jobcytechnology.pvt.ltd.com</p>
+                                                                <p class="text-muted fs-14 text-break mb-0">{{ program.uni.website }}</p>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -485,13 +485,13 @@
                                                             <i class="uil uil-map-marker text-primary fs-4"></i>
                                                             <div class="ms-3">
                                                                 <h6 class="fs-14 mb-2">Location</h6>
-                                                                <p class="text-muted fs-14 mb-0">Oakridge Lane Richardson.</p>
+                                                                <p class="text-muted fs-14 mb-0">{{ program.uni.location }}</p>
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ul>
                                                 <div class="mt-4">
-                                                    <a href="{% url 'company-details' %}" class="btn btn-primary btn-hover w-100 rounded"><i class="mdi mdi-eye"></i> View Profile</a>
+                                                    <a href="{% url 'show_university_profile_page' program.uni.id %}" class="btn btn-primary btn-hover w-100 rounded"><i class="mdi mdi-eye"></i> View University</a>
                                                 </div>
                                             </div>
                                         </div>

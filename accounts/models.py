@@ -16,8 +16,9 @@ from django.urls import reverse
 class University(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(null=True, blank=True)
-    website = models.CharField(max_length=120)
     name = models.CharField(max_length=120, null=True)
+    website = models.CharField(max_length=120)
+    email = models.CharField(max_length=120, null=True)
     phone = models.CharField(max_length=120, null=True)
     location = models.CharField(max_length=120, null=True)
     about = models.TextField(null=True)
@@ -42,6 +43,7 @@ class Student(models.Model):
     profile_picture = models.ImageField(null=True, blank=True)
     age = models.CharField(max_length=120, null=True, blank=True)
     location = models.CharField(max_length=255, null=True)
+    education = models.TextField(null=True)
 
 
     def __str__(self):
@@ -57,14 +59,14 @@ class Program(models.Model):
     name =  models.CharField(max_length=120)
     uni = models.ForeignKey(University, on_delete=models.CASCADE)
     description = models.TextField( null=True)
-    profile_picture = models.ImageField(null=True, blank=True)
+    profile_picture = models.ImageField(null=True, blank=True,default='featured-job/img-05.png')
     tuition = models.CharField(max_length=120, null=True)
     requirements = models.TextField(max_length=256, null=True)
     location = models.CharField(max_length=255, null=True)
     deadline = models.CharField(max_length=120, null=True)
     duration = models.CharField(max_length=120, null=True)
     degree_studies = models.CharField(max_length=120, null=True)
-    degree = models.CharField(max_length=120, null=True)
+    level = models.CharField(max_length=120, null=True)
 
 
     def __str__(self):
