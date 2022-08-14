@@ -61,7 +61,7 @@ urlpatterns = [
     path('add/<int:pk>', views.AddApplicationView.as_view(), name='add_application'), #should be applications/add/...
     path('search_universities', views.search_universities, name='search-universities'),
     path('applications_list/<int:pk>', views.ApplicationListView.as_view(), name='application-list'),
-    path('applicants_list/', views.applicants_list, name='applicants-list'),
+    path('applicants_list', views.applicants_list, name='applicants-list'),
     path('application/<int:pk>', views.ApplicationDetailView.as_view(), name='application-detail'),
     path('applications/<int:pk>', views.DeleteApplicationView.as_view(), name='delete-application'), # should be applications/delete/<int:pk>/
 

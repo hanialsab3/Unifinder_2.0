@@ -378,7 +378,7 @@
                                     <div class="candidate-list">
 
                                         <!-- Hani -->
-                                        {% for app in applications %}
+                                        {% for app in apps %}
                                         <div class="candidate-list-box card mt-4">
                                             <div class="card-body p-4">
                                                 <div class="row align-items-center">
@@ -426,25 +426,47 @@
                                     </div><!--end candidate-list-->
                                 </div><!--end col-->
                             </div><!--end row-->
-
                             <div class="row">
                                 <div class="col-lg-12 mt-5">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination job-pagination mb-0 justify-content-center">
+                                          {% if apps.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{apps.previous_page_number}}" tabindex="-1">
+                                                    <i class="mdi mdi-chevron-double-left fs-15"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
                                             <li class="page-item disabled">
                                                 <a class="page-link" href="javascript:void(0)" tabindex="-1">
                                                     <i class="mdi mdi-chevron-double-left fs-15"></i>
                                                 </a>
                                             </li>
-                                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                            {% endif %}
+                                            {% for i in nums %}
+                                              {% ifequal forloop.counter apps.number %}
+                                                  <li class="page-item active"><a class="page-link" href="javascript:void(0)">{{forloop.counter}}</a></li>
+                                              {% else %}
+                                                  <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{forloop.counter}}</a></li>
+                                              {% endifequal %}
+                                            {% endfor %}
+                                            <!-- <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li> -->
+                                            {% if apps.has_next %}
                                             <li class="page-item">
+                                                <a class="page-link" href="?page={{apps.next_page_number}}">
+                                                    <i class="mdi mdi-chevron-double-right fs-15"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="page-item disabled">
                                                 <a class="page-link" href="javascript:void(0)">
                                                     <i class="mdi mdi-chevron-double-right fs-15"></i>
                                                 </a>
                                             </li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div><!--end col-->

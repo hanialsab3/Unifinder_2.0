@@ -4,6 +4,7 @@ from accounts.models import Student, University, Program, Application
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
+from django.core.paginator import Paginator
 from accounts import forms
 from .forms import ProgramForm
 from accounts.forms import ApplicationForm
@@ -147,15 +148,26 @@ def applicants_list(request):
     current_university = request.user.university
     applications = Application.objects.filter(uni = current_university)
     programs = Program.objects.filter(uni = current_university)
+
     if request.method == "POST":
         program = request.POST.get('program_filter')
         if (program == '-1'):
-            applications = Application.objects.filter(uni=current_university)
+            p = Paginator(Application.objects.filter(uni=current_university), 1)
+            page = request.GET.get('page')
+            apps = p.get_page(page)
+            nums = "a" * apps.paginator.num_pages
         else:
-            applications = Application.objects.filter(uni=current_university, program=program)
-        return render(request, 'applicants-list.html',{'applications':applications, 'programs':programs})
+            p = Paginator(Application.objects.filter(uni=current_university, program=program),1)
+            page = request.GET.get('page')
+            apps = p.get_page(page)
+            nums = "a" * apps.paginator.num_pages
+        return render(request, 'applicants-list.html',{'apps':apps, 'programs':programs,'nums':nums})
     else:
-        return render(request, 'applicants-list.html',{'applications':applications, 'programs':programs})
+        p = Paginator(Application.objects.filter(uni=current_university), 1)
+        page = request.GET.get('page')
+        apps = p.get_page(page)
+        nums = "a" * apps.paginator.num_pages
+        return render(request, 'applicants-list.html',{'apps':apps, 'applications':applications, 'programs':programs, 'nums':nums})
 
 # class ApplicantsListView(TemplateView):
 #     template_name = 'applicants-list.html'
