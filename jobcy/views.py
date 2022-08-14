@@ -12,8 +12,9 @@ from django.urls import reverse_lazy
 def search_universities(request):
     if request.method == "POST":
         searched = request.POST.get('searched')
+        level = request.POST.get('level')
         universities = University.objects.filter(name__contains=searched)
-        programs = Program.objects.filter(name__contains=searched)
+        programs = Program.objects.filter(name__contains=searched).filter(level__contains=level) |  Program.objects.filter(name__contains=searched)
         return render(request, 'pages/candidates-company/candidate-list.html',{'searched':searched, 'universities': universities, 'programs': programs})
     else:
         return render(request, 'pages/candidates-company/candidate-list.html',{})
@@ -142,11 +143,32 @@ class ApplicationListView(TemplateView):
         context['applications'] = Application.objects.filter( student = page_student)
         return context
 
-class ApplicantsListView(TemplateView):
-    template_name = 'applicants-list.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        current_university = self.request.user.university
-        applications = Application.objects.filter(uni = current_university)
-        context['applications'] = applications
-        return context
+def applicants_list(request):
+    current_university = request.user.university
+    applications = Application.objects.filter(uni = current_university)
+    programs = Program.objects.filter(uni = current_university)
+    if request.method == "POST":
+        program = request.POST.get('program_filter')
+        if (program == '-1'):
+            applications = Application.objects.filter(uni=current_university)
+        else:
+            applications = Application.objects.filter(uni=current_university, program=program)
+        return render(request, 'applicants-list.html',{'applications':applications, 'programs':programs})
+    else:
+        return render(request, 'applicants-list.html',{'applications':applications, 'programs':programs})
+
+# class ApplicantsListView(TemplateView):
+#     template_name = 'applicants-list.html'
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         current_university = self.request.user.university
+#         applications = Application.objects.filter(uni = current_university)
+#         programs = Program.objects.filter(uni = current_university)
+#         context['applications'] = applications
+#         context['programs'] = programs
+#         return context
+#
+#     def form_valid(self,form):
+#         print(self.request.POST.get('program_filter'))
+#
+#         return super().form_valid(form)

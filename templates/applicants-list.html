@@ -52,7 +52,8 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-12">
                                     <div class="candidate-list-widgets mb-4">
-                                        <form action="#">
+                                        <form method=POST action="{% url 'applicants-list' %}">
+                                            {% csrf_token %}
                                             <div class="row g-2">
                                                 <div class="col-lg-3">
                                                     <div class="filler-job-form">
@@ -316,17 +317,19 @@
                                                 <div class="col-lg-3">
                                                     <div class="filler-job-form">
                                                         <i class="uil uil-clipboard-notes"></i>
-                                                        <select class="form-select " data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
-                                                            <option value="4">Accounting</option>
-                                                            <option value="1">IT & Software</option>
-                                                            <option value="3">Marketing</option>
-                                                            <option value="5">Banking</option>
+                                                        <select class="form-select " name="program_filter" id="choices-single-categories" >
+                                                          <option value="">program:</option>
+                                                          <option value="-1">All Programs</option>
+                                                            {% for program in programs %}
+                                                              <option value="{{program.id}}">{{program}}</option>
+                                                            {% endfor %}
                                                         </select>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-lg-3">
                                                     <div>
-                                                        <a href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i> Filter</a>
+                                                        <button type="submit" class="btn btn-primary" name="filter"><i class="uil uil-filter"></i>Filter</button>
+                                                      <!--  <a href="javascript:void(0)" ><i class="uil uil-filter"></i> Filter</a> -->
                                                         <a href="javascript:void(0)" class="btn btn-success ms-2"><i class="uil uil-cog"></i> Advance</a>
                                                     </div>
                                                 </div>
@@ -418,7 +421,7 @@
                                         {% endfor %}
                                         <!-- EndHani -->
 
-                                        
+
 
                                     </div><!--end candidate-list-->
                                 </div><!--end col-->
