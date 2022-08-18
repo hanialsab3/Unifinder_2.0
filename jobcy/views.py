@@ -6,19 +6,26 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.core.paginator import Paginator
 from accounts import forms
-from .forms import ProgramForm
-from accounts.forms import ApplicationForm
+from .forms import ProgramForm, ApplicationForm
 from django.urls import reverse_lazy
 
 def search_universities(request):
     if request.method == "POST":
         searched = request.POST.get('searched')
         level = request.POST.get('level')
-        universities = University.objects.filter(name__contains=searched)
-        programs = Program.objects.filter(name__contains=searched).filter(level__contains=level) |  Program.objects.filter(name__contains=searched)
-        return render(request, 'pages/candidates-company/candidate-list.html',{'searched':searched, 'universities': universities, 'programs': programs})
-    else:
-        return render(request, 'pages/candidates-company/candidate-list.html',{})
+        # universities = University.objects.filter(name__contains=searched)
+        # programs = Program.objects.filter(name__contains=searched).filter(level__contains=level) |  Program.objects.filter(name__contains=searched)
+        p = Paginator(University.objects.filter(name__contains=searched) , 8)
+        page = request.GET.get('page')
+        universities = p.get_page(page)
+        nums = "a" * universities.paginator.num_pages
+        return render(request, 'search.html',{'searched':searched, 'universities': universities, 'nums': nums})
+    else:                                              #coming from View More on index page
+        p = Paginator(University.objects.all(), 8)
+        page = request.GET.get('page')
+        universities = p.get_page(page)
+        nums = "a" * universities.paginator.num_pages
+        return render(request, 'search.html',{'universities': universities, 'nums': nums})
 
 
 class Index(TemplateView):
@@ -152,18 +159,18 @@ def applicants_list(request):
     if request.method == "POST":
         program = request.POST.get('program_filter')
         if (program == '-1'):
-            p = Paginator(Application.objects.filter(uni=current_university), 1)
+            p = Paginator(Application.objects.filter(uni=current_university), 10)
             page = request.GET.get('page')
             apps = p.get_page(page)
             nums = "a" * apps.paginator.num_pages
         else:
-            p = Paginator(Application.objects.filter(uni=current_university, program=program),1)
+            p = Paginator(Application.objects.filter(uni=current_university, program=program),10)
             page = request.GET.get('page')
             apps = p.get_page(page)
             nums = "a" * apps.paginator.num_pages
         return render(request, 'applicants-list.html',{'apps':apps, 'programs':programs,'nums':nums})
     else:
-        p = Paginator(Application.objects.filter(uni=current_university), 1)
+        p = Paginator(Application.objects.filter(uni=current_university), 10)
         page = request.GET.get('page')
         apps = p.get_page(page)
         nums = "a" * apps.paginator.num_pages

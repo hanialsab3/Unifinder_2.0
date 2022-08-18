@@ -36,6 +36,9 @@ class University(models.Model):
     def get_absolute_url(self):
         return reverse("show_university_profile_page", args=[str(self.id)])
 
+    def rand_programs(self):
+        return Program.objects.filter(uni = self).order_by("?")[:2]
+
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     about = models.TextField(null=True)
@@ -66,7 +69,9 @@ class Program(models.Model):
     deadline = models.CharField(max_length=120, null=True)
     duration = models.CharField(max_length=120, null=True)
     degree_studies = models.CharField(max_length=120, null=True)
+    degree = models.CharField(max_length=120, null=True)
     level = models.CharField(max_length=120, null=True)
+    email = models.CharField(max_length=120, null=True)
 
 
     def __str__(self):
@@ -75,12 +80,13 @@ class Program(models.Model):
     def get_absolute_url(self):
         return reverse("program", args=[str(self.id)])
 
+
 class Application(models.Model):
     student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)
     uni = models.ForeignKey(University, on_delete=models.CASCADE)
     program = models.ForeignKey(Program, null=True, on_delete=models.CASCADE)
     motivation = models.CharField(max_length=120)  #file
-    cv = models.CharField(max_length=120)
+    cv = models.FileField(upload_to='cv/',null=True)
     reviewed = models.BooleanField(default=False)
     accepted = models.BooleanField(default=False)
 

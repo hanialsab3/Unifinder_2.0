@@ -188,13 +188,13 @@
 
                                     <div class="mt-4">
                                         <h5>Related Programs</h5>
-                                        <div class="job-box card mt-4">
+                                        <!-- <div class="job-box card mt-4">
                                             <div class="p-4">
                                                 <div class="row">
                                                     <div class="col-lg-1">
                                                         <img src="{% static 'images/featured-job/img-01.png' %}" alt="" class="img-fluid rounded-3">
-                                                    </div><!--end col-->
-                                                    <div class="col-lg-10">
+                                                    </div>--><!--end col-->
+                                                    <!--<div class="col-lg-10">
                                                         <div class="mt-3 mt-lg-0">
                                                             <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">HTML Developer</a> <small class="text-muted fw-normal">(0-2 Yrs Exp.)</small></h5>
                                                             <ul class="list-inline mb-0">
@@ -214,9 +214,9 @@
                                                                 <span class="badge bg-soft-info mt-1">Private</span>
                                                             </div>
                                                         </div>
-                                                    </div><!--end col-->
-                                                </div><!--end row-->
-                                                <div class="favorite-icon">
+                                                    </div>--><!--end col-->
+                                                <!--</div><!--end row-->
+                                              <!--  <div class="favorite-icon">
                                                     <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
                                                 </div>
                                             </div>
@@ -230,99 +230,52 @@
                                                                 <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
                                                             </ul>
                                                         </div>
-                                                    </div>
+                                                    </div>-->
                                                     <!--end col-->
-                                                    <div class="col-md-3">
+                                                <!--    <div class="col-md-3">
                                                         <div class="text-md-end">
                                                             <a href="javascript:void(0)" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
-                                                </div>
+                                              <!--  </div>
                                                 <!--end row-->
-                                            </div>
+                                        <!--    </div>
                                         </div>
                                         <!--end job-box-->
-
-                                        <div class="job-box bookmark-post card mt-4">
-                                            <div class="p-4">
-                                                <div class="row">
-                                                    <div class="col-lg-1">
-                                                        <img src="{% static 'images/featured-job/img-02.png' %}" alt="" class="img-fluid rounded-3">
-                                                    </div><!--end col-->
-                                                    <div class="col-lg-10">
-                                                        <div class="mt-3 mt-lg-0">
-                                                            <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">Marketing Director</a> <small class="text-muted fw-normal">(2-4 Yrs Exp.)</small></h5>
-                                                            <ul class="list-inline mb-0">
-                                                                <li class="list-inline-item">
-                                                                    <p class="text-muted fs-14 mb-0">Creative Agency</p>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> New York</p>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="mt-2">
-                                                                <span class="badge bg-soft-danger mt-1">Part Time</span>
-                                                                <span class="badge bg-soft-info mt-1">Private</span>
-                                                            </div>
-                                                        </div>
-                                                    </div><!--end col-->
-                                                </div><!--end row-->
-                                                <div class="favorite-icon">
-                                                    <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="p-3 bg-light">
-                                                <div class="row justify-content-between">
-                                                    <div class="col-md-8">
-                                                        <div>
-                                                            <ul class="list-inline mb-0">
-                                                                <li class="list-inline-item"><i class="uil uil-tag"></i> Keywords :</li>
-                                                                <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Marketing</a>,</li>
-                                                                <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">business</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-md-3">
-                                                        <div class="text-md-end">
-                                                            <a href="javascript:void(0)" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                </div>
-                                                <!--end row-->
-                                            </div>
-                                        </div>
-                                        <!--end job-box-->
+                                        {% for prog in program.uni.rand_programs %}
 
                                         <div class="job-box card mt-4">
                                             <div class="p-4">
                                                 <div class="row">
+                                                    {% if prog.profile_picture %}
                                                     <div class="col-lg-1">
-                                                        <img src="{% static 'images/featured-job/img-03.png' %}" alt="" class="img-fluid rounded-3">
+                                                        <img src="{{ prog.profile_picture.url }}" alt="" class="img-fluid rounded-3">
                                                     </div><!--end col-->
+                                                    {% else %}
+                                                    <div class="col-lg-1">
+                                                        <img src="{% static 'images/featured-job/img-02.png' %}" alt="" class="img-fluid rounded-3">
+                                                    </div><!--end col-->
+                                                    {% endif %}
                                                     <div class="col-lg-10">
                                                         <div class="mt-3 mt-lg-0">
-                                                            <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">HTML Developer</a> <small class="text-muted fw-normal">(2-4 Yrs Exp.)</small></h5>
+                                                            <h5 class="fs-17 mb-1"><a href="{{ prog.url }}" class="text-dark">{{ prog.name }}</a> <small class="text-muted fw-normal">({{ prog.duration }})</small></h5>
                                                             <ul class="list-inline mb-0">
                                                                 <li class="list-inline-item">
-                                                                    <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
+                                                                    <p class="text-muted fs-14 mb-0">{{ prog.uni }}</p>
                                                                 </li>
                                                                 <li class="list-inline-item">
-                                                                    <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
+                                                                    <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i>{{ prog.loacation }}</p>
                                                                 </li>
                                                                 <li class="list-inline-item">
-                                                                    <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
+                                                                    <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> {{ prog.tuition }}</p>
                                                                 </li>
                                                             </ul>
-                                                            <div class="mt-2">
-                                                                <span class="badge bg-soft-purple mt-1">Freelance</span>
-                                                                <span class="badge bg-soft-blue mt-1">Internship</span>
-                                                            </div>
+                                                            <!-- <div class="mt-2">
+                                                                <span class="badge bg-soft-success mt-1">Full Time</span>
+                                                                <span class="badge bg-soft-warning mt-1">Urgent</span>
+                                                                <span class="badge bg-soft-info mt-1">Private</span>
+                                                            </div> -->
                                                         </div>
                                                     </div><!--end col-->
                                                 </div><!--end row-->
@@ -333,13 +286,13 @@
                                             <div class="p-3 bg-light">
                                                 <div class="row justify-content-between">
                                                     <div class="col-md-8">
-                                                        <div>
+                                                        <!-- <div>
                                                             <ul class="list-inline mb-0">
                                                                 <li class="list-inline-item"><i class="uil uil-tag"></i> Keywords :</li>
                                                                 <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
                                                                 <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
                                                             </ul>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-md-3">
@@ -353,6 +306,9 @@
                                             </div>
                                         </div>
                                         <!--end job-box-->
+
+                                        {% endfor %}
+
 
                                     </div>
 
@@ -416,10 +372,11 @@
                                                     </li> -->
                                                     <li>
                                                         <div class="d-flex mt-4">
-                                                            <i class="uil uil-building icon bg-soft-primary"></i>
+                                                            {# <i class="uil uil-building icon bg-soft-primary"></i> #}
+                                                            <i class="uil uil-envelope icon bg-soft-primary"></i>
                                                             <div class="ms-3">
-                                                                <h6 class="fs-14 mb-2">Industry</h6>
-                                                                <p class="text-muted mb-0">Private</p>
+                                                                <h6 class="fs-14 mb-2">Email</h6>
+                                                                <p class="text-muted mb-0">{{program.email}}</p>
                                                             </div>
                                                         </div>
                                                     </li>
