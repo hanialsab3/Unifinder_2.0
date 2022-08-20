@@ -402,7 +402,9 @@
                                         <div class="card company-profile mt-4">
                                             <div class="card-body p-4">
                                                 <div class="text-center">
-                                                    <img src="{{ program.uni.profile_picture.url }}" alt="" class="img-fluid rounded-3">
+                                                    {% if program.uni.profile_picture %}
+                                                      <img src="{{ program.uni.profile_picture.url }}" alt="" class="img-fluid rounded-3">
+                                                    {% endif %}
 
                                                     <div class="mt-4">
                                                         <h6 class="fs-17 mb-1">{{program.uni.name }}</h6>

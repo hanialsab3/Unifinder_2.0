@@ -62,7 +62,7 @@
                                                 class="avatar-lg img-thumbnail rounded-circle mb-4" />
                                                 {% endif %}
                                                 <h5 class="mb-0">{{user.first_name}} {{user.last_name}}</h5>
-                                                <p class="text-muted">Developer</p>
+                                                <p class="text-muted">Student</p>
                                                 <ul class="list-inline d-flex justify-content-center align-items-center ">
                                                     <li class="list-inline-item text-warning fs-19">
                                                         <i class="mdi mdi-star"></i>
@@ -92,7 +92,8 @@
                                                 </ul>
                                             </div>
                                             <!--end profile-->
-                                            <div class="mt-4 border-bottom pb-4">
+                                            <!-- if cv w hek -->
+                                            <!-- <div class="mt-4 border-bottom pb-4">
                                                 <h5 class="fs-17 fw-bold mb-3">Documents</h5>
                                                 <ul class="profile-document list-unstyled mb-0">
                                                     <li>
@@ -124,7 +125,7 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                             <!--end document-->
                                             <div class="mt-4">
                                                 <h5 class="fs-17 fw-bold mb-3">Contacts</h5>
@@ -152,7 +153,7 @@
                                                             <div class="d-flex">
                                                                 <label>Location</label>
                                                                 <div>
-                                                                    <p class="text-muted mb-0">New Caledonia</p>
+                                                                    <p class="text-muted mb-0">{{user.student.location}}</p>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -193,37 +194,25 @@
                                                     <div>
                                                         <h5 class="fs-18 fw-bold">About</h5>
                                                         <p class="text-muted mt-4">
-                                                            Developer with over 5 years' experience working in both
-                                                            the public and private sectors. Diplomatic, personable,
-                                                            and adept at managing sensitive situations. Highly
-                                                            organized, self-motivated, and proficient with
-                                                            computers. Looking to boost students’ satisfactions
-                                                            scores for <b>International University</b>. Bachelor's
-                                                            degree in communications.
+                                                          {{ user.student.about }}
                                                         </p>
-                                                        <p class="text-muted">
-                                                            It describes the candidate's relevant experience,
-                                                            skills, and achievements. The purpose of this career
-                                                            summary is to explain your qualifications for the job in
-                                                            3-5 sentences and convince the manager to read the whole
-                                                            resume document.
-                                                        </p>
-                                                        <h5 class="fs-18 fw-bold">Other</h5>
+
+                                                        <!-- <h5 class="fs-18 fw-bold">Other</h5>
                                                         <p class="text-muted mt-4">
                                                             {{user.student.application_debug}}
-                                                        </p>
+                                                        </p> -->
                                                     </div>
                                                     <div class="candidate-education-details mt-4">
                                                         <h6 class="fs-18 fw-bold mb-0">Education</h6>
                                                         <div class="candidate-education-content mt-4 d-flex">
                                                             <div class="circle flex-shrink-0 bg-soft-primary">
-                                                                B
+
                                                             </div>
                                                             <div class="ms-4">
                                                                 <h6 class="fs-16 mb-1">
-                                                                    BCA - Bachelor of Computer Applications
+                                                                    {{ user.student.education }}
                                                                 </h6>
-                                                                <p class="mb-2 text-muted">
+                                                                <!-- <p class="mb-2 text-muted">
                                                                     International University - (2004 - 2010)
                                                                 </p>
                                                                 <p class="text-muted">
@@ -232,10 +221,10 @@
                                                                     highly skilled and successfull product development
                                                                     and design specialist with more than 4 Years of My
                                                                     experience.
-                                                                </p>
+                                                                </p> -->
                                                             </div>
                                                         </div>
-                                                        <div class="candidate-education-content mt-3 d-flex">
+                                                        <!-- <div class="candidate-education-content mt-3 d-flex">
                                                             <div class="circle flex-shrink-0 bg-soft-primary">
                                                                 M
                                                             </div>
@@ -253,9 +242,9 @@
                                                                     and design specialist with more than 4 Years of My
                                                                     experience.
                                                                 </p>
-                                                            </div>
+                                                            </div>-->
                                                         </div>
-                                                        <div class="candidate-education-content mt-3 d-flex">
+                                                      <!--  <div class="candidate-education-content mt-3 d-flex">
                                                             <div class="circle flex-shrink-0 bg-soft-primary">
                                                                 D
                                                             </div>
@@ -271,9 +260,9 @@
                                                                     and design specialist with more than 4 Years of My
                                                                     experience.
                                                                 </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                            </div> -->
+                                                        <!-- </div> -->
+                                                    <!-- </div>
                                                     <div class="candidate-education-details mt-4">
                                                         <h6 class="fs-18 fw-bold mb-0">Experiences</h6>
                                                         <div class="candidate-education-content mt-4 d-flex">
@@ -308,7 +297,7 @@
                                                         <span class="badge fs-13 bg-soft-success mt-2">German</span>
                                                         <span class="badge fs-13 bg-soft-success mt-2">French</span>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                                                     <form action="#">
                                                         <div>

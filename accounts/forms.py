@@ -7,10 +7,14 @@ from .models import University, Student, Application, Program
 class ProfilePageStudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ('about',)
+        fields = ('profile_picture','age','location','education','about')
 
         widgets = {
-            'about': forms.TextInput(attrs={'class':'form-control'})
+            'about': forms.TextInput(attrs={'class':'form-control'}),
+            'age': forms.TextInput(attrs={'class':'form-control'}),
+            'location': forms.TextInput(attrs={'class':'form-control'}),
+            'education': forms.TextInput(attrs={'class':'form-control'}),
+            'about': forms.TextInput(attrs={'class':'form-control'}),
         }
 
 class ProfilePageUniverityForm(ModelForm):
