@@ -8,11 +8,21 @@ from accounts.models import University, Student, Application, Program
 class ProgramForm(ModelForm):
     class Meta:
         model = Program
-        fields = ('name','description')
+        fields = ('name','description','profile_picture','tuition','requirements','location','deadline','duration','degree_studies',)
+
 
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'description': forms.Textarea(attrs={'class':'form-control'}),
+            'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
+            'tuition': forms.TextInput(attrs={'class':'form-control'}),
+            'requirements': forms.TextInput(attrs={'class':'form-control'}),
+            'location': forms.TextInput(attrs={'class':'form-control'}),
+            'deadline': forms.TextInput(attrs={'class':'form-control'}),
+            'duration': forms.TextInput(attrs={'class':'form-control'}),
+            'degree_studies': forms.TextInput(attrs={'class':'form-control'}),
+
+
         }
 
 class ApplicationForm(ModelForm):
@@ -23,6 +33,6 @@ class ApplicationForm(ModelForm):
         widgets = {
             # 'uni': forms.Select(attrs={'class':'form-select'}),
             # 'student': forms.Select(attrs={'class':'form-select'}),
-            'motivation': forms.TextInput(attrs={'class':'form-control'}),
+            'motivation': forms.Textarea(attrs={'class':'form-control'}),
             # 'cv': forms.TextInput(attrs={'class':'form-control'}),
         }

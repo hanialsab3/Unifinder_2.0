@@ -51,14 +51,14 @@
                                 </div>
                             </div>
 
-                      <h1> apply </h1>
+                      <h1> Apply </h1>
                       <br>
                       {% if submitted %}
                           Your Application Was Submitted Successfully
 
                       {% else %}
-                      <h1>{{program}}</h1>
-                      <h1>{{program.uni}}</h1>
+                      <h1>Program: {{program}}</h1>
+                      <h1>University: {{program.uni}}</h1>
                       <form class="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 

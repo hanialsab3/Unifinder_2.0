@@ -20,7 +20,7 @@ class ProfilePageStudentForm(ModelForm):
 class ProfilePageUniverityForm(ModelForm):
     class Meta:
         model = University
-        fields = ('profile_picture','website','name','phone','location','about')
+        fields = ('profile_picture','website','name','phone','location','total_students','about')
 
         widgets = {
             # 'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
@@ -28,7 +28,9 @@ class ProfilePageUniverityForm(ModelForm):
             'website': forms.TextInput(attrs={'class':'form-control'}),
             'phone': forms.TextInput(attrs={'class':'form-control'}),
             'location': forms.TextInput(attrs={'class':'form-control'}),
+
             'about': forms.Textarea(attrs={'class':'form-control'}),
+            'total_students': forms.NumberInput(attrs={'class':'form-control'}),
         }
 
 
@@ -126,9 +128,10 @@ class UniversityProfileForm(ModelForm):
 class ProgramForm(ModelForm):
     class Meta:
         model = Program
-        fields = ('uni','name','description')
+        fields = ('uni','name','description','profile_picture','tuition','requirements','location','deadline','duration','degree_studies','degree_studies',)
 
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'description': forms.Textarea(attrs={'class':'form-control'}),
+            'tut=ition': forms.Textarea(attrs={'class':'form-control'}),
         }
